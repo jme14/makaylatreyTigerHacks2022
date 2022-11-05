@@ -1,3 +1,8 @@
+#playButton
+{
+    width: 400px;
+    height: 100px;
+}
 .centerDiv
 {
     display: grid;

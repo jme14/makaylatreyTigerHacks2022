@@ -49,7 +49,7 @@ class levelState
 
 class mapState // 
 {
-    buttonPlacement; // an array which contains the coordinates of each "button"
+    Placement; // an array which contains the coordinates of each "button"
     userDrawing; // property which contains the information given by lines given by player
     levelNumber;
 
@@ -59,6 +59,8 @@ class mapState //
             "images/test.jpeg"
         ]
         this.levelNumber = level;
+
+        this.buttonPlacement = [];
 
         window.onload = function()
         {
@@ -91,13 +93,9 @@ class mapState //
                 70,70,
                 80,80
             ];
-            
+
             currentPositionArray = positionArray;
-            for ( let i = 0 ; i < positionArray.length/2 ; i = i+2)
-            {
-                let cL = new clickLocation(positionArray[i], positionArray[i+1]);
-                this.buttonPlacement.push(cL);
-            }
+            
         }
         else if ( level === 2)
         {
@@ -115,19 +113,55 @@ class mapState //
         }
         else if ( level === 3)
         {
-
+            const positionArray = [ // this is where coordinates are provided 
+            10,10,
+            20,20,
+            30,30,
+            40,40,
+            50,50,
+            60,60,
+            70,70,
+            80,80
+            ];
+            currentPositionArray = positionArray;
         }
         else if ( level === 4)
         {
-
+            const positionArray = [ // this is where coordinates are provided 
+            10,10,
+            20,20,
+            30,30,
+            40,40,
+            50,50,
+            60,60,
+            70,70,
+            80,80
+            ];
+            currentPositionArray = positionArray;
         }
         else if ( level === 5)
         {
-
+            const positionArray = [ // this is where coordinates are provided 
+            10,10,
+            20,20,
+            30,30,
+            40,40,
+            50,50,
+            60,60,
+            70,70,
+            80,80
+            ];
+            currentPositionArray = positionArray;
         }
         else
         {
             console.error("invalid level");
+        }
+
+        for ( let i = 0 ; i < currentPositionArray.length/2 ; i = i+2)
+        {
+            let cL = new clickLocation(currentPositionArray[i], currentPositionArray[i+1]);
+            this.buttonPlacement.push(cL);
         }
     }
 
@@ -206,6 +240,46 @@ class clickLocation
 
 // FUNCTIONS 
 
+function mainMenu()
+{
+    window.onload = function()
+    {
+        let canvas= document.getElementById("playerScreen");
+        let ctx = canvas.getContext("2d");
+
+        let img = new Image();
+        img.setAttribute("src" , "images/test.jpeg");
+        img.setAttribute("height", "900px");
+        img.setAttribute("width", "1200px");
+
+        img.onload = function()
+        {
+            ctx.drawImage(img, 0, 0);
+        }
+
+        let playButton = document.createElement("button");
+        playButton.setAttribute("id", "playButton");
+        playButton.innerHTML = "Play";
+        let cenDiv = document.getElementById("canvasDiv");
+
+        playButton.addEventListener("click", function()
+        {
+            let gS = new gameState("Player");
+            playGame(gS);
+        })
+
+
+        cenDiv.appendChild(playButton);
+    }
+}
+
+
+function playGame(gS)
+{
+
+}
+
+
 function getMouseClickLocation(myCanvas, event)
 {   
     let myRectangle = myCanvas.getBoundingClientRect();
@@ -243,4 +317,7 @@ myCanvas.addEventListener("mousedown", function(e)
 // load in the main menu 
 // on play, initiate the game state 
 
-gS = new gameState("Player");
+mainMenu();
+console.log("main menu loaded");
+
+
