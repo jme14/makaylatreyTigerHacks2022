@@ -264,6 +264,7 @@ function mainMenu()
 
         playButton.addEventListener("click", function()
         {
+            playButton.remove();
             let gS = new gameState("Player");
             playGame(gS);
         })
@@ -276,7 +277,6 @@ function mainMenu()
 
 function playGame(gS)
 {
-
 }
 
 
